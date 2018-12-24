@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="equals">=</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="six">6</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">*</string>
+    <string name="divide">/</string>
+    <string name="zero">0</string>
+    <string name="decimal">.</string>
+    <string name="exponent">^</string>
+    <string name="LBracket">(</string>
+    <string name="RBracket">)</string>
+    <string name="pi">π</string>
+    <string name="e">e</string>
+    <string name="sin">Sin</string>
+    <string name="cos">Cos</string>
+    <string name="bttn_tan">Tan</string>
+    <string name="ASin">ASin</string>
+    <string name="arccos">ACos</string>
+    <string name="arctan">Atan</string>
+    <string name="Log">log</string>
+    <string name="squareRoot">√</string>
+    <string name="badExpressionMessage">Bad Expression!</string>
+    <string name="zeroDivisionError">Division By Zero</string>
+</resources>
