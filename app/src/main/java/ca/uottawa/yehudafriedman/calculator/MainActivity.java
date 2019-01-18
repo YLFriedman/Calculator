@@ -161,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
                 else if(displayExpression.toString().matches(ExpressionValidator.fourLetterSpecial)) {
                     backspaceCounter = backspaceCounter - 5;
                 }
+                else if(displayExpression.toString().matches(ExpressionValidator.squareRootEnding)) {
+                    backspaceCounter = backspaceCounter - 2;
+                }
                 else{
                     backspaceCounter--;
                 }
@@ -168,24 +171,25 @@ public class MainActivity extends AppCompatActivity {
             case STANDARD:
                 if(displayExpression.toString().matches(ExpressionValidator.threeLetterSpecial)) {
                     displayExpression.delete(displayExpression.length()-4, displayExpression.length());
-                    displayField.setText(displayExpression.toString());
-                    return;
+
                 }
                 else if(displayExpression.toString().matches(ExpressionValidator.fourLetterSpecial)) {
                     displayExpression.delete(displayExpression.length()-5, displayExpression.length());
-                    displayField.setText(displayExpression.toString());
-                    return;
+
+                }
+                else if(displayExpression.toString().matches(ExpressionValidator.squareRootEnding)) {
+                    displayExpression.delete(displayExpression.length()-2, displayExpression.length());
+
                 }
                 else if(displayExpression.length() >= 1 ) {
                     displayExpression.deleteCharAt(displayExpression.length()-1);
-                    displayField.setText(displayExpression.toString());
+
                 }
+
+                displayField.setText(displayExpression.toString());
                 break;
 
             case ON_ERROR:
-                clearExpression();
-                mode = Mode.STANDARD;
-                break;
 
             case RESULT:
                 clearExpression();
@@ -213,6 +217,9 @@ public class MainActivity extends AppCompatActivity {
                     displayField.setText(displayExpression.toString());
                     if(operator.charAt(0) == 'A') {
                         backspaceCounter += 5;
+                    }
+                    else if(operator == "√") {
+                        backspaceCounter += 2;
                     }
                     else {
                         backspaceCounter += 4;

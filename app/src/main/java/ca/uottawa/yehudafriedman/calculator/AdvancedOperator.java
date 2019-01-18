@@ -35,12 +35,13 @@ public class AdvancedOperator implements MathComponent {
 
     public AdvancedOperator(String input) {
         input = input.toUpperCase();
-        if(input.equals("ARCCOS")){
+        if(input.equals("ACOS")){
             this.type = OperatorTypes.ARCCOS;
         }
-        if(input.equals("ARCSIN")) {
+        if(input.equals("ASIN")) {
             this.type = OperatorTypes.ARCSIN;
         }
+
         else {
             this.type = OperatorTypes.ARCTAN;
         }

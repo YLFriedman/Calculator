@@ -8,9 +8,10 @@ import java.util.ArrayList;
 public class ExpressionValidator {
 
     private static String illegalPatternsRegex = ".*\\.\\d*\\..*|.*[^0-9]\\.[^0-9].*|.*[*/^+\\-][*/^+\\-].*|.*\\([*/^].*|.*[*/^+\\-]\\).*|.*\\(\\).*|.*^[(.)]$.*|.*[*/^+\\-]$|^[*/^].*";
-    private static String illegalOperatorPattern = ".*[*/^+\\-][*/^+].*";
-    private static  String illegalBracketPattern = ".*\\([*/^].*|.*[*/^+\\-]\\).*|.*\\(\\)|.*^[()]$.*";
-    private static String implicitMultiplication = "[0-9.][\u03c0\u0065\\(a-z]|[\u03c0\u0065][0-9\\(a-z.]|\\)[(a-z\u03c0\u0065.0-9]";
+    public static String containsScientific = ".*E\\-?[0-9]+.*";
+    public static String threeLetterSpecial = ".*(Sin|Cos|Tan|Log)\\($";
+    public static String fourLetterSpecial = ".*A(cos|sin|tan)\\($";
+    public static String squareRootEnding = ".*√\\($";
 
     private static char[] specialValues = {'\u03C0','\u0065'};
 
@@ -39,22 +40,6 @@ public class ExpressionValidator {
         return val;
     }
 
-
-    public static MathExpression processAndSolve(Value initial, String validExpression) {
-        return null;
-    }
-
-    public static void main(String[] args) {
-       String testExpression = "3^23";
-       Value val = processAndSolve(testExpression);
-       String result = val.toString();
-       Apfloat floaty = new Apfloat(result);
-       System.out.println(floaty);
-       result = processAndSolve(result).toString();
-       System.out.println(result);
-
-
-    }
 
     private static String formatExpression(String exp) {
 
@@ -120,11 +105,23 @@ public class ExpressionValidator {
     }
 
     private static MathExpression parseExpression(String exp) {
+        int startingPoint = 0;
         ArrayList<MathComponent> expBuilder = new ArrayList<>();
         boolean onValue = false;
-        boolean onScientific = false;
         StringBuilder valueBuilder = new StringBuilder();
-        for(int i = 0; i < exp.length(); i ++) {
+        if(exp.matches(containsScientific)) {
+            int end = findScientificEnd(exp);
+            valueBuilder.append(exp.substring(0,end));
+            if(end == exp.length()){
+                appendValue(expBuilder, valueBuilder);
+            }
+            else{
+                onValue = true;
+            }
+            startingPoint = end;
+        }
+
+        for(int i = startingPoint; i < exp.length(); i ++) {
             char current = exp.charAt(i);
             if(Character.isDigit(current) || current == '.') {
                 valueBuilder.append(current);
@@ -254,5 +251,19 @@ public class ExpressionValidator {
         exp.add(value);
         builder.setLength(0);
     }
+
+    private static int findScientificEnd(String exp) {
+        for(int i = 0; i < exp.length(); i ++) {
+            char current = exp.charAt(i);
+            if(isOperator(current)) {
+                int check = i - 1;
+                if(exp.charAt(check) != 'E') {
+                    return i;
+                }
+            }
+        }
+        return exp.length();
+    }
+
 
 }

@@ -11,7 +11,7 @@ package ca.uottawa.yehudafriedman.calculator;
 public enum OperatorTypes {
 
     PLUS(1, "+"), MINUS(1, "-"), MULTIPLY(2, "*"), DIVIDE(2, "/"), EXPONENT(3, "^"), SIN(4, "Sin"), COS(4, "Cos"),
-    TAN(4, "Tan"), ARCSIN(4, "Arcsin"), ARCCOS(4, "Arccos"), ARCTAN(4, "Arctan"), ROOT(4, "Root"), LOG(4, "Log");
+    TAN(4, "Tan"), ARCSIN(4, "Asin"), ARCCOS(4, "Acos"), ARCTAN(4, "Atan"), ROOT(4, "Root"), LOG(4, "Log");
 
     private int rank;
 

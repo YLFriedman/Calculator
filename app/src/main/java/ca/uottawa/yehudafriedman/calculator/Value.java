@@ -66,7 +66,7 @@ public class Value implements MathComponent{
         if(rawString.matches(scientificNotationRegex)) {
             rawString = rawString.replace('e', 'E');
             if(rawString.length() > 8) {
-                return rawString.substring(0,4) + rawString.substring(rawString.length()-4);
+                return rawString.substring(0,4) + rawString.substring(rawString.length()-6);
             }
             else{
                 return rawString;
